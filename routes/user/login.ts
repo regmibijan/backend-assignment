@@ -5,8 +5,7 @@ import { withValidation } from '@/middlewares/validate'
 import db from '@/config/prisma'
 import { APIError } from '@/utils/error'
 import { compareSync } from 'bcryptjs'
-import { sign } from 'jsonwebtoken'
-import { env } from '@/config/env'
+import { createToken } from '@/utils/jwt'
 
 const loginSchema = z.object({
     body: z.object({
@@ -23,7 +22,7 @@ const loginProc = async (
     const { email, password } = input.body
     const user = await db.user.findUnique({
         where: { email },
-        select: { email: true, password: true },
+        select: { email: true, password: true, role: true },
     })
 
     if (!user)
@@ -38,8 +37,8 @@ const loginProc = async (
             message: 'Invalid password',
         })
 
-    const payload = { email }
-    res.cookie('token', sign(payload, env.JWTSECRET))
+    const token = createToken({ email, role: user.role ?? undefined })
+    res.cookie('token', token)
 
     return res.status(StatusCodes.OK).json({ message: 'Logged In' })
 }

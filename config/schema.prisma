@@ -17,8 +17,8 @@ model User {
     name     String
     verified Boolean @default(false)
 
-    role    Roles? @relation(fields: [rolesId], references: [id])
-    rolesId Int?
+    role      Roles?  @relation(fields: [rolesName], references: [name])
+    rolesName String?
 
     Product Product[]
     Order   Order[]
@@ -27,7 +27,7 @@ model User {
 }
 
 model Roles {
-    id               Int     @id @default(autoincrement())
+    name             String  @id
     isSuperAdmin     Boolean @default(false)
     canOrder         Boolean @default(true)
     canAddProduct    Boolean @default(false)
