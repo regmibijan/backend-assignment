@@ -5,6 +5,21 @@ import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 import { getPayload } from '@/utils/jwt'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              refillProduct:
+ *                      type: object
+ *                      required:
+ *                              - add
+ *                              - pid
+ *                      properties:
+ *                              add:
+ *                                      type: integer
+ *                              pid:
+ *                                      type: string
+ */
 const schema = z.object({
     body: z.object({
         add: z.string().transform(Number),

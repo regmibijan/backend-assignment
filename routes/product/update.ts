@@ -1,10 +1,29 @@
 import { z, TypeOf } from 'zod'
 import { Request, Response } from 'express'
 import db from '@/config/prisma'
-import { getPayload } from '@/utils/jwt'
 import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              updateProduct:
+ *                      type: object
+ *                      required:
+ *                              - pid
+ *                      properties:
+ *                              pid:
+ *                                      type: string
+ *                              name:
+ *                                      type: string
+ *                              description:
+ *                                      type: string
+ *                              manufacturer:
+ *                                      type: string
+ *                              unitPrice:
+ *                                      type: integer
+ */
 const schema = z.object({
     body: z.object({
         pid: z.string(),

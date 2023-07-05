@@ -5,6 +5,18 @@ import { getPayload } from '@/utils/jwt'
 import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 
+/**
+ * @swagger
+ * components:
+ *      schema:
+ *              productId:
+ *                      type: object
+ *                      required:
+ *                              - pid
+ *                      properites:
+ *                              pid:
+ *                                      type: string
+ */
 const schema = z.object({
     query: z.object({
         pid: z.string(),
