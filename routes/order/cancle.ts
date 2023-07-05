@@ -6,6 +6,18 @@ import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 import { OrderStatus } from '@prisma/client'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              cancelOrder:
+ *                      type: object
+ *                      required:
+ *                              - oid
+ *                      properties:
+ *                              oid:
+ *                                      type: integer
+ */
 const schema = z.object({
     body: z.object({
         oid: z.string().transform(Number),

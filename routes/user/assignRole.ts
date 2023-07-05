@@ -10,6 +10,9 @@ import { TypeOf, z } from 'zod'
  *      schemas:
  *              assignRole:
  *                      type: object
+ *                      required:
+ *                              - email
+ *                              - role
  *                      properties:
  *                              email:
  *                                      type: string

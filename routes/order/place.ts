@@ -6,6 +6,21 @@ import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 import { OrderStatus } from '@prisma/client'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              placeOrder:
+ *                      type: object
+ *                      required:
+ *                              - pid
+ *                              - quantity
+ *                      properties:
+ *                              pid:
+ *                                      type: string
+ *                              quantity:
+ *                                      type: integer
+ */
 const schema = z.object({
     body: z.object({
         pid: z.string(),

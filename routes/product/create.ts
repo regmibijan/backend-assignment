@@ -14,7 +14,7 @@ import { withValidation } from '@/middlewares/validate'
  *                      required:
  *                              - name
  *                              - manufacturer
- *                              - unitprice
+ *                              - unitPrice
  *                      properties:
  *                              name:
  *                                      type: string
