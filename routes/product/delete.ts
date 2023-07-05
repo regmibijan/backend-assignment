@@ -1,7 +1,6 @@
 import { z, TypeOf } from 'zod'
 import { Request, Response } from 'express'
 import db from '@/config/prisma'
-import { getPayload } from '@/utils/jwt'
 import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 
@@ -23,6 +22,18 @@ const schema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /product:
+ *      delete:
+ *              summary: Delete a product
+ *              tags: [Product]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/deleteProduct'
+ */
 const proc = async (
     req: Request,
     res: Response,

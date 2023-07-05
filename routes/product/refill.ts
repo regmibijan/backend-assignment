@@ -27,6 +27,18 @@ const schema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /product/refill:
+ *      post:
+ *              summary: Refills a product's stock
+ *              tags: [Product]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/refillProduct'
+ */
 const proc = async (
     req: Request,
     res: Response,

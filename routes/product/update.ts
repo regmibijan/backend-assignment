@@ -34,6 +34,18 @@ const schema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /product:
+ *      patch:
+ *              summary: Update a product information
+ *              tags: [Product]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/updateProduct'
+ */
 const proc = async (
     req: Request,
     res: Response,

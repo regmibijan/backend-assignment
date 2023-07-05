@@ -24,6 +24,18 @@ const schema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /order:
+ *      delete:
+ *              summary: Cancel an order
+ *              tags: [Order]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/cancelOrder'
+ */
 const proc = async (
     req: Request,
     res: Response,

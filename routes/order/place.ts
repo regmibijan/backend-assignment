@@ -28,6 +28,18 @@ const schema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /order:
+ *      post:
+ *              summary: Place an order
+ *              tags: [Order]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/placeOrder'
+ */
 const proc = async (
     req: Request,
     res: Response,

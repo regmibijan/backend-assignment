@@ -23,6 +23,19 @@ const schema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /order?oid=:
+ *      get:
+ *              summary: Get order information
+ *              tags: [Order]
+ *              parameters:
+ *                      - in: query
+ *                        name: oid
+ *                        required: true
+ *                        schema:
+ *                              type: integer
+ */
 const proc = async (
     req: Request,
     res: Response,

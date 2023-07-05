@@ -10,6 +10,13 @@ const schema = z.object({
     body: z.object({}),
 })
 
+/**
+ * @swagger
+ * /order/cart:
+ *      get:
+ *              summary: Get orders in user's cart
+ *              tags: [Order]
+ */
 const proc = async (
     req: Request,
     res: Response,
