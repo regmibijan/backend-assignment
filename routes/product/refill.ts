@@ -22,7 +22,7 @@ const proc = async (
         where: { pid: input.body.pid },
         data: {
             stock: { increment: input.body.add },
-            addedBy: { connect: { uid: user.uid } },
+            addedBy: { connect: { uid: user?.uid } },
         },
         select: { stock: true },
     })

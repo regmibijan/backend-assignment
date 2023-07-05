@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { createProduct } from './create'
-import { getProduct } from '../order/get'
+import { getProduct } from './get'
 import { updateProduct } from './update'
 import { refillProduct } from './refill'
 import { deleteProduct } from './delete'

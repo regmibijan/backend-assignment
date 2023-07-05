@@ -17,5 +17,6 @@ export const createToken = (payload: JWTPayload) => {
 }
 
 export const getPayload = (token: string) => {
-    return decode(token) as JWTPayload
+    const payload = decode(token)
+    return payload == null ? undefined : (payload as JWTPayload)
 }

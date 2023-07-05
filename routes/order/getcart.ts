@@ -18,7 +18,7 @@ const proc = async (
     const user = getPayload(req.cookies['token'])
 
     const orders = db.order.findMany({
-        where: { status: OrderStatus.CARTED, userUid: user.uid },
+        where: { status: OrderStatus.CARTED, userUid: user?.uid },
         select: {
             oid: true,
             product: { select: { name: true } },

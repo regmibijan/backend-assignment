@@ -23,7 +23,7 @@ const proc = async (
     await db.order.create({
         data: {
             product: { connect: { pid: input.body.pid } },
-            user: { connect: { uid: user.uid } },
+            user: { connect: { uid: user?.uid } },
             quantity: input.body.quantity,
             status: OrderStatus.CARTED,
         },

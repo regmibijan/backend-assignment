@@ -25,11 +25,11 @@ const proc = async (
     })
 
     const reason =
-        user.uid == order?.userUid ? 'Canceled by user' : 'Canceled by admin'
+        user?.uid == order?.userUid ? 'Canceled by user' : 'Canceled by admin'
 
     await db.order.update({
         where: { oid: input.body.oid },
-        data: { status: OrderStatus.ABORTED },
+        data: { status: OrderStatus.ABORTED, comment: reason },
     })
     return res.status(StatusCodes.OK).json({ message: 'Canceled order' })
 }

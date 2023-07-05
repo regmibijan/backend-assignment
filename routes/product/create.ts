@@ -23,7 +23,7 @@ const createProductProc = async (
     const newProduct = await db.product.create({
         data: {
             ...input.body,
-            addedBy: { connect: { uid: user.uid } },
+            addedBy: { connect: { uid: user?.uid } },
         },
     })
     return res
