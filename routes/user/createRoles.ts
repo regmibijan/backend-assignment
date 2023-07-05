@@ -46,6 +46,18 @@ const createRolesSchema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /user/createrole:
+ *      post:
+ *              summary: Create new role
+ *              tags: [User]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/createRole'
+ */
 const createRolesProc = async (
     req: Request,
     res: Response,

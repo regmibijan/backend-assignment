@@ -26,6 +26,19 @@ const assignRoleSchema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /user/assignrole:
+ *      post:
+ *              summary: Assign a role to a user
+ *              tags: [User]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/assignRole'
+ *
+ */
 const assignRoleProc = async (
     req: Request,
     res: Response,

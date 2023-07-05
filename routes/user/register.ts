@@ -32,6 +32,18 @@ const registerSchema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /user/register:
+ *      post:
+ *              summary: Register new user account
+ *              tags: [User]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/register'
+ */
 const registerProc = async (
     req: Request,
     res: Response,

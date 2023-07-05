@@ -7,6 +7,13 @@ const schema = z.object({
     body: z.object({}),
 })
 
+/**
+ * @swagger
+ * /user/logout:
+ *      delete:
+ *              summary: Logs out user
+ *              tags: [User]
+ */
 const proc = async (
     req: Request,
     res: Response,

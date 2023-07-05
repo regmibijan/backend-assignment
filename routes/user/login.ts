@@ -29,6 +29,19 @@ const loginSchema = z.object({
     }),
 })
 
+/**
+ * @swagger
+ * /user/login:
+ *      post:
+ *              summary: Login with email and password
+ *              tags: [User]
+ *              requestBody:
+ *                      content:
+ *                              application/json:
+ *                                      schema:
+ *                                              $ref: '#/components/schemas/login'
+ *
+ */
 const loginProc = async (
     req: Request,
     res: Response,
