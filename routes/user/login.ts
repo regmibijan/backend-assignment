@@ -22,7 +22,7 @@ const loginProc = async (
     const { email, password } = input.body
     const user = await db.user.findUnique({
         where: { email },
-        select: { email: true, password: true, role: true },
+        select: { uid: true, password: true, role: true },
     })
 
     if (!user)
@@ -37,7 +37,7 @@ const loginProc = async (
             message: 'Invalid password',
         })
 
-    const token = createToken({ email, role: user.role ?? undefined })
+    const token = createToken({ uid: user.uid, role: user.role ?? undefined })
     res.cookie('token', token)
 
     return res.status(StatusCodes.OK).json({ message: 'Logged In' })

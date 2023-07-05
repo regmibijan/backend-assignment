@@ -41,6 +41,7 @@ model Product {
     name         String
     description  String @default("")
     manufacturer String
+    unitPrice    Int
     stock        Int    @default(0)
 
     addedBy     User    @relation(fields: [addedUserId], references: [uid])

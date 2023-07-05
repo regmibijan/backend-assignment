@@ -2,7 +2,7 @@ import { env } from '@/config/env'
 import { sign, decode } from 'jsonwebtoken'
 
 interface JWTPayload {
-    email: string
+    uid: string
     role?: {
         name: string
         isSuperAdmin: boolean
