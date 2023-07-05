@@ -1,5 +1,5 @@
 import { APIError } from '@/utils/error'
-import { JWTPayload, getPayload } from '@/utils/jwt'
+import { getPayload } from '@/utils/jwt'
 import { NextFunction, Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 
