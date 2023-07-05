@@ -6,6 +6,7 @@ export const env = createEnv({
     server: {
         DATABASE_URL: z.string().url(),
         PORT: z.string().regex(/\d+/).transform(Number),
+        JWTSECRET: z.string().default('notsosecret'),
     },
     client: {},
     runtimeEnv: process.env,

@@ -17,8 +17,8 @@ model User {
     name     String
     verified Boolean @default(false)
 
-    role    Roles @relation(fields: [rolesId], references: [id])
-    rolesId Int
+    role    Roles? @relation(fields: [rolesId], references: [id])
+    rolesId Int?
 
     Product Product[]
     Order   Order[]
