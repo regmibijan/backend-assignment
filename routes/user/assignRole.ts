@@ -4,6 +4,18 @@ import { Request, Response } from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { TypeOf, z } from 'zod'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              assignRole:
+ *                      type: object
+ *                      properties:
+ *                              email:
+ *                                      type: string
+ *                              role:
+ *                                      type: string
+ */
 const assignRoleSchema = z.object({
     body: z.object({
         email: z.string().email(),

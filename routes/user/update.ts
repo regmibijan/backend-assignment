@@ -6,6 +6,18 @@ import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 import { hashSync } from 'bcryptjs'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              updateUserInfo:
+ *                      type: object
+ *                      properties:
+ *                              password:
+ *                                      type: string
+ *                              name:
+ *                                      type: string
+ */
 const schema = z.object({
     body: z.object({
         password: z.string().min(8).optional(),

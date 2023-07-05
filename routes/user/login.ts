@@ -7,6 +7,21 @@ import { APIError } from '@/utils/error'
 import { compareSync } from 'bcryptjs'
 import { createToken } from '@/utils/jwt'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              login:
+ *                      type: object
+ *                      required:
+ *                              - email
+ *                              - password
+ *                      properties:
+ *                              email:
+ *                                      type: string
+ *                              password:
+ *                                      type: string
+ */
 const loginSchema = z.object({
     body: z.object({
         email: z.string().email(),

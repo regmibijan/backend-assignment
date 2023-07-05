@@ -6,6 +6,24 @@ import { hashSync } from 'bcryptjs'
 import { Request, Response } from 'express'
 import { withValidation } from '@/middlewares/validate'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              register:
+ *                      type: object
+ *                      required:
+ *                              - email
+ *                              - password
+ *                              - name
+ *                      properties:
+ *                              email:
+ *                                      type: string
+ *                              password:
+ *                                      type: string
+ *                              name:
+ *                                      type: string
+ */
 const registerSchema = z.object({
     body: z.object({
         email: z.string().email(),

@@ -4,6 +4,26 @@ import { withValidation } from '@/middlewares/validate'
 import db from '@/config/prisma'
 import { StatusCodes } from 'http-status-codes'
 
+/**
+ * @swagger
+ * components:
+ *      schemas:
+ *              createRole:
+ *                      type: object
+ *                      required:
+ *                              - name
+ *                      properties:
+ *                              isSuperAdmin:
+ *                                      type: boolean
+ *                              canOrder:
+ *                                      type: boolean
+ *                              canAddProduct:
+ *                                      type: boolean
+ *                              canRefillProduct:
+ *                                      type: boolean
+ *                              name:
+ *                                      type: string
+ */
 const createRolesSchema = z.object({
     body: z.object({
         isSuperAdmin: z

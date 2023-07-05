@@ -9,6 +9,23 @@ const schema = z.object({
     body: z.object({}),
 })
 
+/**
+ * @swagger
+ * /user/:
+ *      delete:
+ *              description: Delete user account
+ *              tags: ['User']
+ *              responses:
+ *                      200:
+ *                              description: Account deleted successfully
+ *                              content:
+ *                                      application/json:
+ *                                              schema:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              message:
+ *                                                                      type: string
+ */
 const proc = async (
     req: Request,
     res: Response,
