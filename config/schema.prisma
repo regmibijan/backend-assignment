@@ -52,8 +52,10 @@ model Product {
 }
 
 model Order {
-    oid      Int @id @default(autoincrement())
-    quantity Int @default(1)
+    oid      Int         @id @default(autoincrement())
+    quantity Int         @default(1)
+    status   OrderStatus
+    comment  String      @default("")
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -63,4 +65,11 @@ model Order {
 
     user    User   @relation(fields: [userUid], references: [uid])
     userUid String
+}
+
+enum OrderStatus {
+    CARTED
+    PLACED
+    COMPLETED
+    ABORTED
 }
