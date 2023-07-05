@@ -8,8 +8,9 @@ import { withRole } from '@/middlewares/withRole'
 
 const productRouter = Router()
 
-productRouter.post('/', withRole(['canAddProduct']), createProduct)
 productRouter.get('/', getProduct)
+productRouter.post('/', withRole(['canAddProduct']), createProduct)
 productRouter.patch('/', withRole(['canAddProduct']), updateProduct)
 productRouter.delete('/', withRole(['canAddProduct']), deleteProduct)
+
 productRouter.post('/refill', withRole(['canRefillProduct']), refillProduct)
