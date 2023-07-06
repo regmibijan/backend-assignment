@@ -43,6 +43,7 @@
         "typescript": "^5.1.6"
     },
     "prisma": {
-        "schema": "config/schema.prisma"
+        "schema": "config/schema.prisma",
+        "seed": "npx ts-node utils/seed.ts"
     }
 }
