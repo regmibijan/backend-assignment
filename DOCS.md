@@ -16,6 +16,13 @@ npm i && npm run dev
 # Api docs will be available at /docs
 ```
 
+## Database setup
+
+```
+npx prisma db push
+npx prisma db seed
+```
+
 ## Environment Setup
 
 env schema can be seen in `config/env.ts` file
