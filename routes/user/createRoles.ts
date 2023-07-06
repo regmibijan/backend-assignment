@@ -57,6 +57,11 @@ const createRolesSchema = z.object({
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/createRole'
+ *              responses:
+ *                      200:
+ *                              description: Role created successfully
+ *                      500:
+ *                              description: Internal Server Error
  */
 const createRolesProc = async (
     req: Request,

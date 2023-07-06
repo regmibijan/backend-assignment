@@ -13,6 +13,11 @@ const schema = z.object({
  *      delete:
  *              summary: Logs out user
  *              tags: [User]
+ *              responses:
+ *                      200:
+ *                              description: Logged Out
+ *                      500:
+ *                              description: Internal Server Error
  */
 const proc = async (
     req: Request,

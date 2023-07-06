@@ -43,6 +43,13 @@ const registerSchema = z.object({
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/register'
+ *              responses:
+ *                      200:
+ *                              description: User registered successfullly
+ *                      400:
+ *                              description: User already exists
+ *                      500:
+ *                              description: Internal Server Error
  */
 const registerProc = async (
     req: Request,

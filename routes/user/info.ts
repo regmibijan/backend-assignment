@@ -15,6 +15,28 @@ const schema = z.object({
  *      get:
  *              summary: Get user information
  *              tags: [User]
+ *              responses:
+ *                      200:
+ *                              description: User Response
+ *                              content:
+ *                                      application/json:
+ *                                              schema:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              uid:
+ *                                                                      type: string
+ *                                                                      description: Unique id of the user
+ *                                                              name:
+ *                                                                      type: string
+ *                                                                      description: Name of the user
+ *                                                              email:
+ *                                                                      type: string
+ *                                                                      description: Email address of the user
+ *                                                              createdAt:
+ *                                                                      type: string
+ *                                                                      description: Account creation date
+ *                      500:
+ *                              description: Internal Server Error
  */
 const proc = async (
     req: Request,

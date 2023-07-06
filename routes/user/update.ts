@@ -36,6 +36,11 @@ const schema = z.object({
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/updateUserInfo'
+ *              responses:
+ *                      200:
+ *                              description: Updated Successfully
+ *                      500:
+ *                              description: Internal Server Error
  */
 const proc = async (
     req: Request,

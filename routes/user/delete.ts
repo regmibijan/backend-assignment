@@ -18,13 +18,8 @@ const schema = z.object({
  *              responses:
  *                      200:
  *                              description: Account deleted successfully
- *                              content:
- *                                      application/json:
- *                                              schema:
- *                                                      type: object
- *                                                      properties:
- *                                                              message:
- *                                                                      type: string
+ *                      500:
+ *                              description: Internal Server Error
  */
 const proc = async (
     req: Request,

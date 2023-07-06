@@ -37,7 +37,11 @@ const assignRoleSchema = z.object({
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/assignRole'
- *
+ *              responses:
+ *                      200:
+ *                              description: Role Assigned successfully
+ *                      500:
+ *                              description: Internal Server Error
  */
 const assignRoleProc = async (
     req: Request,

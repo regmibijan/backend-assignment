@@ -40,6 +40,15 @@ const loginSchema = z.object({
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/login'
+ *              responses:
+ *                      200:
+ *                              description: Logged in successfully
+ *                      404:
+ *                              description: User not found
+ *                      401:
+ *                              description: Invalid password
+ *                      500:
+ *                              description: Internal Server Error
  *
  */
 const loginProc = async (
