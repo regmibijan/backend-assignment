@@ -5,18 +5,6 @@ import { getPayload } from '@/utils/jwt'
 import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 
-/**
- * @swagger
- * components:
- *      schemas:
- *              getOrder:
- *                      type: object
- *                      required:
- *                              - oid
- *                      properties:
- *                              oid:
- *                                      type: integer
- */
 const schema = z.object({
     query: z.object({
         oid: z.string().transform(Number),

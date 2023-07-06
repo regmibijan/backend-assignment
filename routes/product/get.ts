@@ -4,18 +4,6 @@ import db from '@/config/prisma'
 import { StatusCodes } from 'http-status-codes'
 import { withValidation } from '@/middlewares/validate'
 
-/**
- * @swagger
- * components:
- *      schema:
- *              productId:
- *                      type: object
- *                      required:
- *                              - pid
- *                      properites:
- *                              pid:
- *                                      type: string
- */
 const schema = z.object({
     query: z.object({
         pid: z.string(),
@@ -28,11 +16,12 @@ const schema = z.object({
  *      get:
  *              summary: Get product details
  *              tags: [Product]
- *              requestBody:
- *                      content:
- *                              application/json:
- *                                      schema:
- *                                              $ref: '#/components/schemas/productId'
+ *              parameters:
+ *                      - in: query
+ *                        name: pid
+ *                        required: true
+ *                        schema:
+ *                              type: string
  */
 const proc = async (
     req: Request,

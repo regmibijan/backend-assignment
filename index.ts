@@ -3,6 +3,8 @@ import { env } from '@/config/env'
 import { errorHandler } from './middlewares/errorHandler'
 import { userRouter } from './routes/user'
 import swaggerDocs from './config/swagger'
+import { productRouter } from './routes/product'
+import { orderRouter } from './routes/order'
 
 swaggerDocs(app, env.PORT)
 
@@ -11,6 +13,8 @@ app.get('/', (req, res) => {
 })
 
 app.use('/user', userRouter)
+app.use('/product', productRouter)
+app.use('/order', orderRouter)
 app.use(errorHandler)
 
 app.listen(env.PORT, () => {

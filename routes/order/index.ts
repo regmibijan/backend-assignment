@@ -6,7 +6,7 @@ import { cancelOrder } from './cancle'
 import { getUserCart } from './getcart'
 import { withAuth } from '@/middlewares/withAuth'
 
-const orderRouter = Router()
+export const orderRouter = Router()
 
 orderRouter.post('/cart', withAuth, addToCart)
 orderRouter.get('/cart', withAuth, getUserCart)

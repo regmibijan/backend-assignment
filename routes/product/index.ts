@@ -6,7 +6,7 @@ import { refillProduct } from './refill'
 import { deleteProduct } from './delete'
 import { withRole } from '@/middlewares/withRole'
 
-const productRouter = Router()
+export const productRouter = Router()
 
 productRouter.get('/', getProduct)
 productRouter.post('/', withRole(['canAddProduct']), createProduct)
