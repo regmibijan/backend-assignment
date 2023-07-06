@@ -39,6 +39,11 @@ const schema = z.object({
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/addToCart'
+ *              responses:
+ *                      200:
+ *                              description: Item added to card
+ *                      500:
+ *                              description: Internal Server Error
  */
 const proc = async (
     req: Request,

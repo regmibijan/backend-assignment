@@ -16,6 +16,48 @@ const schema = z.object({
  *      get:
  *              summary: Get orders in user's cart
  *              tags: [Order]
+ *              responses:
+ *                      200:
+ *                              description: Get cart of the logged in user
+ *                              content:
+ *                                      application/json:
+ *                                              schema:
+ *                                                      type: array
+ *                                                      items:
+ *                                                              type: object
+ *                                                              properties:
+ *                                                                      quantity:
+ *                                                                              type: integer
+ *                                                                              description: amount of item
+ *                                                                      status:
+ *                                                                              type: string
+ *                                                                              enum: ['CARTED', 'PLACED', 'COMPLETED', 'ABORTED']
+ *                                                                              description: status of the order
+ *                                                                      comment:
+ *                                                                              type: string
+ *                                                                              description: any comment on the order
+ *                                                                      total:
+ *                                                                              type: integer
+ *                                                                              description: total amount of the order
+ *                                                                      product:
+ *                                                                              type: object
+ *                                                                              description: product details in the order
+ *                                                                              schema:
+ *                                                                                      properties:
+ *                                                                                              pid:
+ *                                                                                                      type: string
+ *                                                                                                      description: unique id of the product
+ *                                                                                              name:
+ *                                                                                                      type: string
+ *                                                                                                      description: name of the product
+ *                                                                                              unitPrice:
+ *                                                                                                      type: string
+ *                                                                                                      description: price of one unit of the product
+ *                                                                                              manufacturer:
+ *                                                                                                      type: string
+ *                                                                                                      description: manufacturer of the product
+ *                      500:
+ *                              description: Internal Server Error
  */
 const proc = async (
     req: Request,
@@ -28,7 +70,14 @@ const proc = async (
         where: { status: OrderStatus.CARTED, userUid: user?.uid },
         select: {
             oid: true,
-            product: { select: { name: true } },
+            product: {
+                select: {
+                    pid: true,
+                    name: true,
+                    unitPrice: true,
+                    manufacturer: true,
+                },
+            },
             quantity: true,
             updatedAt: true,
         },

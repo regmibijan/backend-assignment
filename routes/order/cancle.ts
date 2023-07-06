@@ -35,6 +35,11 @@ const schema = z.object({
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/cancelOrder'
+ *              responses:
+ *                      200:
+ *                              description: Order Canceled
+ *                      500:
+ *                              description: Internal Server Error
  */
 const proc = async (
     req: Request,
