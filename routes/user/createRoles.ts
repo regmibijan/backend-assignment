@@ -52,6 +52,9 @@ const createRolesSchema = z.object({
  *      post:
  *              summary: Create new role
  *              tags: [User]
+ *              description: Requires isSuperAdmin role
+ *              security:
+ *                      - jwtAuth: []
  *              requestBody:
  *                      content:
  *                              application/json:
@@ -60,6 +63,19 @@ const createRolesSchema = z.object({
  *              responses:
  *                      200:
  *                              description: Role created successfully
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
  *                      500:
  *                              description: Internal Server Error
  */

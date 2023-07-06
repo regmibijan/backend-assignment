@@ -34,6 +34,8 @@ const schema = z.object({
  *      post:
  *              summary: Add order to cart
  *              tags: [Order]
+ *              security:
+ *                      - jwtAuth: []
  *              requestBody:
  *                      content:
  *                              application/json:
@@ -42,6 +44,19 @@ const schema = z.object({
  *              responses:
  *                      200:
  *                              description: Item added to card
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
  *                      500:
  *                              description: Internal Server Error
  */
@@ -50,7 +65,7 @@ const proc = async (
     res: Response,
     input: TypeOf<typeof schema>
 ) => {
-    const user = getPayload(req.cookies['token'])
+    const user = getPayload(req)
 
     await db.order.create({
         data: {

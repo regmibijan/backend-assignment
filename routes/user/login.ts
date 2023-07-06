@@ -43,6 +43,16 @@ const loginSchema = z.object({
  *              responses:
  *                      200:
  *                              description: Logged in successfully
+ *                              content:
+ *                                      application/json:
+ *                                              schema:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              token:
+ *                                                                      type: string
+ *                                                                      description: JWT token, should be sent in Authorization header
+ *                                                              message:
+ *                                                                      type: string
  *                      404:
  *                              description: User not found
  *                      401:
@@ -77,7 +87,7 @@ const loginProc = async (
     const token = createToken({ uid: user.uid, role: user.role ?? undefined })
     res.cookie('token', token)
 
-    return res.status(StatusCodes.OK).json({ message: 'Logged In' })
+    return res.status(StatusCodes.OK).json({ message: 'Logged In', token })
 }
 
 export const login = withValidation(loginSchema, loginProc)

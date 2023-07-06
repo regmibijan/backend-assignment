@@ -13,4 +13,4 @@ productRouter.post('/', withRole(['canAddProduct']), createProduct)
 productRouter.patch('/', withRole(['canAddProduct']), updateProduct)
 productRouter.delete('/', withRole(['canAddProduct']), deleteProduct)
 
-productRouter.post('/refill', withRole(['canRefillProduct']), refillProduct)
+productRouter.post('/restock', withRole(['canRefillProduct']), refillProduct)

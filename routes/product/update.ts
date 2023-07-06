@@ -39,12 +39,34 @@ const schema = z.object({
  * /product:
  *      patch:
  *              summary: Update a product information
+ *              description: Requires canAddProduct role
  *              tags: [Product]
+ *              security:
+ *                      - jwtAuth: []
  *              requestBody:
  *                      content:
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/updateProduct'
+ *              responses:
+ *                      200:
+ *                              description: Product Updated
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
+ *                      500:
+ *                              description: Internal Server Error
+ *
  */
 const proc = async (
     req: Request,

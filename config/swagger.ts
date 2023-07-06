@@ -4,18 +4,20 @@ import swaggerUi from 'swagger-ui-express'
 
 const options: swaggerJsdoc.OAS3Options = {
     definition: {
-        openapi: '3.0.0',
+        openapi: '3.0.1',
         info: {
             title: 'Sales Management Platform APIs',
             version: '0.1.0',
         },
         servers: [{ url: 'http://localhost:4000/' }],
         components: {
-            securitySchemas: {
-                cookieAuth: {
-                    type: 'jwt',
-                    in: 'cookie',
-                    name: 'token',
+            securitySchemes: {
+                jwtAuth: {
+                    type: 'apiKey',
+                    name: 'Authorization',
+                    in: 'header',
+                    description:
+                        'Enter the token with the `Bearer: ` prefix, e.g. "Bearer abcde12345".',
                 },
             },
         },

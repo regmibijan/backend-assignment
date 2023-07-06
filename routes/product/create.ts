@@ -39,7 +39,10 @@ const createProductSchema = z.object({
  * /product:
  *      post:
  *              summary: Create new product
+ *              description: Requires canAddProduct role
  *              tags: [Product]
+ *              security:
+ *                      - jwtAuth: []
  *              requestBody:
  *                      required: true
  *                      content:
@@ -48,6 +51,7 @@ const createProductSchema = z.object({
  *                                              $ref: '#/components/schemas/createProduct'
  *              responses:
  *                      200:
+ *                              description: Product created successfully
  *                              content:
  *                                      application/json:
  *                                              schema:
@@ -60,15 +64,28 @@ const createProductSchema = z.object({
  *                                                                      properties:
  *                                                                              pid:
  *                                                                                      type: string
- *
- *
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
+ *                      500:
+ *                              description: Internal Server Error
  */
 const createProductProc = async (
     req: Request,
     res: Response,
     input: TypeOf<typeof createProductSchema>
 ) => {
-    const user = getPayload(req.cookies['token'])
+    const user = getPayload(req)
     const newProduct = await db.product.create({
         data: {
             ...input.body,

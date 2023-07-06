@@ -15,6 +15,8 @@ const schema = z.object({
  *      get:
  *              summary: Get user information
  *              tags: [User]
+ *              security:
+ *                      - jwtAuth: []
  *              responses:
  *                      200:
  *                              description: User Response
@@ -35,6 +37,19 @@ const schema = z.object({
  *                                                              createdAt:
  *                                                                      type: string
  *                                                                      description: Account creation date
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
  *                      500:
  *                              description: Internal Server Error
  */
@@ -43,7 +58,7 @@ const proc = async (
     res: Response,
     input: TypeOf<typeof schema>
 ) => {
-    const user = getPayload(req.cookies['token'])
+    const user = getPayload(req)
     if (!user) return
 
     const data = await db.user.findUnique({

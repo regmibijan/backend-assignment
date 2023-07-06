@@ -27,12 +27,33 @@ const schema = z.object({
  * /product:
  *      delete:
  *              summary: Delete a product
+ *              description: Requires canAddProduct role
  *              tags: [Product]
+ *              security:
+ *                      - jwtAuth: []
  *              requestBody:
  *                      content:
  *                              application/json:
  *                                      schema:
  *                                              $ref: '#/components/schemas/deleteProduct'
+ *              responses:
+ *                      200:
+ *                              description: Product deleted
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
+ *                      500:
+ *                              description: Internal Server Error
  */
 const proc = async (
     req: Request,

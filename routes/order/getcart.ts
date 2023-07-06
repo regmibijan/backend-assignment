@@ -16,6 +16,8 @@ const schema = z.object({
  *      get:
  *              summary: Get orders in user's cart
  *              tags: [Order]
+ *              security:
+ *                      - jwtAuth: []
  *              responses:
  *                      200:
  *                              description: Get cart of the logged in user
@@ -56,6 +58,19 @@ const schema = z.object({
  *                                                                                              manufacturer:
  *                                                                                                      type: string
  *                                                                                                      description: manufacturer of the product
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
  *                      500:
  *                              description: Internal Server Error
  */
@@ -64,7 +79,7 @@ const proc = async (
     res: Response,
     input: TypeOf<typeof schema>
 ) => {
-    const user = getPayload(req.cookies['token'])
+    const user = getPayload(req)
 
     const orders = db.order.findMany({
         where: { status: OrderStatus.CARTED, userUid: user?.uid },

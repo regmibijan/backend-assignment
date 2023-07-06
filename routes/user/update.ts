@@ -31,6 +31,8 @@ const schema = z.object({
  *      patch:
  *              summary: Update user info
  *              tags: [User]
+ *              security:
+ *                      - jwtAuth: []
  *              requestBody:
  *                      content:
  *                              application/json:
@@ -39,6 +41,19 @@ const schema = z.object({
  *              responses:
  *                      200:
  *                              description: Updated Successfully
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
  *                      500:
  *                              description: Internal Server Error
  */
@@ -50,7 +65,7 @@ const proc = async (
     if (input.body.password)
         input.body.password = hashSync(input.body.password, 10)
 
-    const user = getPayload(req.cookies['token'])
+    const user = getPayload(req)
     if (!user) return
     await db.user.update({ where: { uid: user.uid }, data: input.body })
     return res.status(StatusCodes.OK).json({ message: 'Updated user' })

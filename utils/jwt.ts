@@ -1,4 +1,5 @@
 import { env } from '@/config/env'
+import { Request } from 'express'
 import { sign, decode } from 'jsonwebtoken'
 
 interface JWTPayload {
@@ -16,7 +17,9 @@ export const createToken = (payload: JWTPayload) => {
     return sign(payload, env.JWTSECRET)
 }
 
-export const getPayload = (token: string) => {
+export const getPayload = (req: Request) => {
+    const token = req.headers.authorization?.split(' ')[1]
+    if (!token) return undefined
     const payload = decode(token)
     return payload == null ? undefined : (payload as JWTPayload)
 }

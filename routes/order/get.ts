@@ -18,6 +18,8 @@ const schema = z.object({
  *      get:
  *              summary: Get order information
  *              tags: [Order]
+ *              security:
+ *                      - jwtAuth: []
  *              parameters:
  *                      - in: query
  *                        name: oid
@@ -62,6 +64,19 @@ const schema = z.object({
  *                                                                                      manufacturer:
  *                                                                                              type: string
  *                                                                                              description: manufacturer of the product
+ *                      401:
+ *                              description: Unauthorized
+ *                              content:
+ *                                      application/json:
+ *                                              scheme:
+ *                                                      type: object
+ *                                                      properties:
+ *                                                              status:
+ *                                                                      type: string
+ *                                                                      description: Status code
+ *                                                              message:
+ *                                                                      type: string
+ *                                                                      description: Reason for the error
  *                      404:
  *                              description: Order not found
  *                      500:
